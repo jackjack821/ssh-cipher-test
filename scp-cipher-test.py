@@ -22,12 +22,13 @@ transport.connect(username=username, password=password)
 ciphers = transport.get_security_options()._get_ciphers()
 
 for c in ciphers:
+    # get all ciphers # c is ('aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', 'aes192-cbc', 'aes256-cbc', 'blowfish-cbc', '3des-cbc')
     print "Probando %s" % c
     destino = '/tmp/%s' % c  # armo la ruta donde escribir
 
     try:
         transport = paramiko.Transport((host, port))
-        transport.get_security_options().ciphers = [c, ]
+        transport.get_security_options().ciphers = [c, ] # set cipher # c is ('aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', 'aes192-cbc', 'aes256-cbc', 'blowfish-cbc', '3des-cbc')
         transport.connect(username=username, password=password)
         # print transport
 
